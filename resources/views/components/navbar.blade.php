@@ -9,11 +9,9 @@
       
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{route('login')}}" >Login</a>
+                  <a class="btn btn-sm btn-warning" aria-current="page" href="{{route('user.dashboard')}}" >Creat a post</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="{{route('registration')}}" >Registration</a>
-                </li>
+               
       
               </ul>
         

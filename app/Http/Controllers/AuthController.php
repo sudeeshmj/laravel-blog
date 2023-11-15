@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Blog;
 
 class AuthController extends Controller
 {
@@ -20,7 +21,12 @@ class AuthController extends Controller
    
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->route('user.dashboard');
+         
+            if (Auth::user()->status == 1) {
+                return redirect()->route('admin.dashboard');
+            } else {
+                return redirect()->route('user.dashboard');
+            }
         }
         return redirect()->route('login')->with('message','Login details are not valid');
     }
@@ -47,9 +53,20 @@ class AuthController extends Controller
     }
 
     public function userDashboard(){
-        return view('users.dashboard');
+      
+            $bloglist = Blog::where('user_id', Auth::user()->id)
+            ->latest()
+            ->get();
+        return view('users.dashboard',compact('bloglist'));
+       
+}
+public function adminDashboard(){
+      
+    $bloglist = Blog::latest()->get();
+    return view('admin.admindashboard',compact('bloglist'));
 
-    }
+}
+
     public function logout(){
        
         Auth::logout();

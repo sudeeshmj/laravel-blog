@@ -17,7 +17,7 @@ class CreateBlogsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title',250);
-            $table->string('content',255);
+            $table->string('content',4000);
             $table->string('image');
             $table->date('postdate');
             $table->foreign('user_id')->references('id')->on('users');

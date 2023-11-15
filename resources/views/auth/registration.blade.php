@@ -43,7 +43,9 @@
 
                     </div>
                 </div>
+                <span>Already have an account <a href="{{route('login')}}">Login</a></span>
             </div>
+          
         </div>
     </div>
 </main>
